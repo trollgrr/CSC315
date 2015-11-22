@@ -54,10 +54,14 @@ Country VARCHAR(4)
 DROP TABLE IF EXISTS flightleg;
 CREATE TABLE flightleg(
 LegStatus BOOL,
-DepartureICAO VARCHAR(4),
-DestinationICAO VARCHAR(4),
+Departure_ICAO VARCHAR(4),
+Destination_ICAO VARCHAR(4),
 DepartureTimeLocal TIME,
-ArrivalTimeLocal TIME
+ArrivalTimeLocal TIME,
+_Tail VARCHAR(6),
+Carrier_ID VARCHAR(2),
+Flight_No INT(4) UNSIGNED NOT NULL,
+PRIMARY KEY (Carrier_ID, Flight_No, Departure_ICAO)
 );
 
 DROP TABLE IF EXISTS airport;
@@ -71,18 +75,77 @@ Phone VARCHAR(17)
 
 DROP TABLE IF EXISTS flight;
 CREATE TABLE flight(
-#CarrierName VARCHAR(45),
-FlightNumber INT(4) UNSIGNED
+Carrier_ID VARCHAR(2) NOT NULL,
+FlightNo INT(4) UNSIGNED NOT NULL,
+PRIMARY KEY (Carrier_ID, FlightNo)
 );
 
 DROP TABLE IF EXISTS carrier;
 CREATE TABLE carrier(
 CarrierName VARCHAR(45),
 CarrierID VARCHAR(3),
+Mailing_Address INT(12) UNSIGNED,
 PRIMARY KEY(CarrierID)
 );
 
 DROP TABLE IF EXISTS carrierOffice;
 CREATE TABLE carrierOffice(
+Mailing_Address INT(12) UNSIGNED,
+PRIMARY KEY (Mailing_Address),
 OfficePhone VARCHAR(17)
 );
+
+CREATE TABLE flight(
+Carrier_ID VARCHAR(2) NOT NULL,
+FlightNo INT(4) UNSIGNED NOT NULL,
+PRIMARY KEY (Carrier_ID, FlightNo)
+);
+
+
+CREATE TABLE aircraft(
+Tail VARCHAR(6),
+PRIMARY KEY (Tail),
+acftMake VARCHAR(45),
+acftModel VARCHAR(45),
+classCapFirst INT(4) UNSIGNED NOT NULL,
+classCapSecond INT(4) UNSIGNED NOT NULL,
+classCapThird INT(4) UNSIGNED NOT NULL
+);
+
+DROP TABLE IF EXISTS paymentType;
+CREATE TABLE paymentType(
+Method VARCHAR(45),
+PaymentID INT(12) UNSIGNED NOT NULL AUTO_INCREMENT,
+PRIMARY KEY (PaymentID),
+CardNo INT(16) UNSIGNED,
+ExpirationDate DATE,
+SecurityCode INT(4) UNSIGNED,
+AccountNo INT(17) UNSIGNED,
+RoutingNo INT(17) UNSIGNED,
+CardName VARCHAR(45),
+IBAN VARCHAR (16),
+Customer_ID INT(12) UNSIGNED
+);
+
+DROP TABLE IF EXISTS charge;
+CREATE TABLE charge(
+Created DATETIME,
+AmtRcvd NUMERIC(10,2),
+AmtPaid NUMERIC(10,2),
+Payment_ID INT(12) UNSIGNED NOT NULL,
+PRIMARY KEY (Created, Payment_ID)
+);
+
+ALTER TABLE customer ADD FOREIGN KEY (Physical_Address) REFERENCES address (AddressID);
+ALTER TABLE customer ADD FOREIGN KEY (Mailing_Address) REFERENCES address (AddressID);
+ALTER TABLE airport ADD FOREIGN KEY (Mailing_Address) REFERENCES address (AddressID);
+ALTER TABLE carrier ADD FOREIGN KEY (Mailing_Address) REFERENCES address (AddressID);
+ALTER TABLE carrierOffice ADD FOREIGN KEY (Mailing_Address) REFERENCES address (AddressID);
+ALTER TABLE reservation ADD FOREIGN KEY (Customer_ID) REFERENCES customer (CustomerID);
+ALTER TABLE flightleg ADD FOREIGN KEY (Departure_ICAO) REFERENCES airport (ICAO);
+ALTER TABLE flightleg ADD FOREIGN KEY (Destination_ICAO) REFERENCES airport (ICAO);
+ALTER TABLE flightleg ADD FOREIGN KEY (_Tail) REFERENCES aircraft (Tail);
+ALTER TABLE flightleg ADD FOREIGN KEY (Carrier_ID) REFERENCES carrier (CarrierID);
+ALTER TABLE flightleg ADD FOREIGN KEY (Flight_No) REFERENCES flight (FlightNo);
+ALTER TABLE charge ADD FOREIGN KEY (Payment_ID) REFERENCES paymentType (PaymentID);
+
