@@ -18,7 +18,8 @@ public class FHInit {
     private Statement st;
     // Variables named to keep them separate for primary functions
     String drop1i, create1i, grant1i, grant2i, flush1i, use1i, drop2i, create2i, drop3i, create3i;
-    String drop4i, create4i, drop5i, create5i, drop6i, create6i, drop7i, create7i, drop8i, create8i, drop9i, create9i;
+    String drop4i, create4i, drop5i, create5i, drop6i, create6i, drop7i, create7i, drop8i, create8i, drop9i, create9i, 
+           drop10i, create10i, drop11i, create11i;
     public FHInit(){
         try {
             
@@ -123,6 +124,30 @@ public class FHInit {
             "OfficePhone VARCHAR(17)\n" +
             ")";
             stmt.executeUpdate(create9i);
+            
+            drop10i = "DROP TABLE IF EXISTS frequentFlierGroup;";
+            stmt.executeUpdate(drop10i);
+            
+            create10i = "CREATE TABLE frequentFlierGroup("+
+            "CustomerID INT(12) UNSIGNED NOT NULL,\n"+
+            "FFGroupID INT(12) UNSIGNED NOT NULL,\n"+
+            "MembershipName VARCHAR(50) NOT NULL,\n"+
+            "PRIMARY KEY (FFGroupID));";
+            
+            stmt.executeUpdate(create10i);
+            
+            drop11i = "DROP TABLE IF EXISTS frequentFlierMembership;";
+            stmt.executeUpdate(drop11i);
+            
+            create11i = "CREATE TABLE frequentFlierMemberShip(\n"+
+            "FFGroupID INT(12) UNSIGNED NOT NULL,\n"+ 
+            "MembershipName VARCHAR(50) NOT NULL,\n"+
+            "FFPoints INT(12) UNSIGNED,\n"+
+            "PRIMARY KEY(FFGroupID, MembershipName),\n"+
+            "FOREIGN KEY (FFGroupID) REFERENCES frequentFlierGroup(FFGroupID));"      ;
+            
+            stmt.executeUpdate(create11i);
+            
             System.out.println("I think this means it's working.");
 
             }catch (SQLException e) 
@@ -135,9 +160,9 @@ public class FHInit {
                 stmt.close();
                 }
             }
-    }catch (Exception e) 
-    {
-            System.out.println("Error: " + e);
+        }catch (Exception e) 
+        {
+                System.out.println("Error: " + e);
+        }
     }
-}
 }
