@@ -5,8 +5,9 @@
  */
 package flighthandler;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.util.ArrayList;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -99,8 +100,10 @@ private ArrayList<JTextField> text_fields;
        text_fields.add(phone);
        
        for(JTextField tf : text_fields){
+           tf.setPreferredSize(new Dimension(300,30));
            registration.add(tf);
        }
+       submit.setAlignmentX(Component.CENTER_ALIGNMENT);
        registration.add(submit);
        
        
