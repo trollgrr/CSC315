@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  *
  * @author Johnogel
  */
-public class FlightRegistrationFrame extends JFrame{
+public class FlightRegistrationForm extends JFrame{
 private final JPanel registration;
 private JButton submit;
 public final static String 
@@ -37,7 +37,7 @@ public final static String
         PO_BOX = "P.O. Box";
                     
 private ArrayList<JTextField> text_fields;
-    public FlightRegistrationFrame(){
+    public FlightRegistrationForm(){
         super();
         text_fields = new ArrayList();
         registration = new JPanel();

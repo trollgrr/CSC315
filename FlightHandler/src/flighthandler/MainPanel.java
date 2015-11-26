@@ -27,7 +27,7 @@ private JButton register;
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                FlightRegistrationFrame form = new FlightRegistrationFrame();
+                FlightRegistrationForm form = new FlightRegistrationForm();
             }
         
         });
