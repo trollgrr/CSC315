@@ -60,25 +60,25 @@ private ArrayList<JTextField> text_fields;
        JTextField first_name = new JTextField();
        first_name.setName(FIRST);
        
-       JTextField last_name = new JTextField("Enter Last Name");
+       JTextField last_name = new JTextField();
        last_name.setName(LAST);
        
-       JTextField address = new JTextField("Enter Address");
+       JTextField address = new JTextField();
        address.setName(ADDRESS);
        
-       JTextField apt_no = new JTextField("Enter Apt. No.");
+       JTextField apt_no = new JTextField();
        apt_no.setName(APT);
        
-       JTextField city = new JTextField("Enter City");
+       JTextField city = new JTextField();
        city.setName(CITY);
        
-       JTextField state = new JTextField("Enter State");
+       JTextField state = new JTextField();
        state.setName(STATE);
        
-       JTextField zip = new JTextField("Enter Zip Code");
+       JTextField zip = new JTextField();
        zip.setName(ZIP);
        
-       JTextField po_box = new JTextField("Enter PO BOX");
+       JTextField po_box = new JTextField();
        po_box.setName(PO_BOX);
        
        
@@ -101,11 +101,14 @@ private ArrayList<JTextField> text_fields;
        text_fields.add(phone);
        
        for(JTextField tf : text_fields){
+           tf.setText(tf.getName());
            tf.addFocusListener(new FocusListener(){
 
                @Override
                public void focusGained(FocusEvent fe) {
-                   tf.setText("");
+                    if(tf.getName() == null ? tf.getText() == null : tf.getName().equals(tf.getText())){
+                        tf.setText("");
+                    }
                }
 
                @Override
