@@ -15,6 +15,8 @@ public class FlightHandler {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        VisualsManager manager = new VisualsManager();
+        manager.initialize();
         // TODO code application logic here
     }
     

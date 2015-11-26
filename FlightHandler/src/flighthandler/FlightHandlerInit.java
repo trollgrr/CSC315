@@ -61,7 +61,7 @@ public class FlightHandlerInit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void initButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initButtonActionPerformed
-     
+
         FHInit start = new FHInit();
     }//GEN-LAST:event_initButtonActionPerformed
 
