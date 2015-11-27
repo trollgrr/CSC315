@@ -20,7 +20,7 @@ public class MainPanel extends JPanel{
 private JButton register;
     public MainPanel(){
         register = new JButton("REGISTER FLIGHT");
-        this.setPreferredSize(new Dimension(Frame.WIDTH, Frame.HEIGHT));
+        this.setPreferredSize(new Dimension(800, 600));
         add(register);
         
         register.addActionListener(new ActionListener(){
