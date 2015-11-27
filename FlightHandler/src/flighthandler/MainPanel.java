@@ -17,11 +17,20 @@ import javax.swing.JPanel;
  * @author Johnogel
  */
 public class MainPanel extends JPanel{
+private JPanel top, bottom;
 private JButton register;
     public MainPanel(){
         register = new JButton("REGISTER FLIGHT");
-        this.setPreferredSize(new Dimension(800, 600));
-        add(register);
+        
+        top = new JPanel();
+        bottom = new JPanel();
+        
+        this.setSize(new Dimension(800, 600));
+        
+        top.setSize(new Dimension(this.getWidth(),this.getHeight()-100));
+        bottom.setSize(new Dimension(this.getWidth(), 100));
+        
+        bottom.add(register);
         
         register.addActionListener(new ActionListener(){
 

@@ -35,8 +35,6 @@ private JButton query;
         bottom.setPreferredSize(new Dimension(this.getWidth(), 100));
         bottom.setBackground(Color.yellow);
         
-        
-        
         column_headers = new ArrayList();
         query = new JButton("RUN QUERY");
         query.addActionListener(new ActionListener(){
@@ -44,6 +42,7 @@ private JButton query;
             @Override
             public void actionPerformed(ActionEvent ae) {
                 //fill screen with query result
+                System.out.println("Some Query should totally run right here yo.");
                 
             }
         
