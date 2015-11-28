@@ -23,7 +23,8 @@ import javax.swing.JPanel;
 public class QueryPanel extends JPanel{
 private ArrayList<JLabel> column_headers;
 private JPanel top, bottom;
-private JButton query;
+private JButton query_button;
+private String query;
     public QueryPanel(){
         
         this.setSize(new Dimension(800,600));
@@ -36,8 +37,8 @@ private JButton query;
         bottom.setBackground(Color.yellow);
         
         column_headers = new ArrayList();
-        query = new JButton("RUN QUERY");
-        query.addActionListener(new ActionListener(){
+        query_button = new JButton("RUN QUERY");
+        query_button.addActionListener(new ActionListener(){
 
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -48,14 +49,18 @@ private JButton query;
         
         });
         
-        query.setAlignmentY(Container.BOTTOM_ALIGNMENT);
-        query.setAlignmentX(Container.CENTER_ALIGNMENT);
+        query_button.setAlignmentY(Container.BOTTOM_ALIGNMENT);
+        query_button.setAlignmentX(Container.CENTER_ALIGNMENT);
         
         
     }
     
     public void addColumn(String column_name){
         column_headers.add(new JLabel(column_name));
+    }
+    
+    public void setQuery(String query){
+        this.query = query;
     }
     
     public int getColumnNums(){
@@ -70,7 +75,7 @@ private JButton query;
             
         }
         top.setLayout(new GridLayout(0,getColumnNums()));
-        bottom.add(query);
+        bottom.add(query_button);
         this.add(top);
         this.add(bottom);
         
