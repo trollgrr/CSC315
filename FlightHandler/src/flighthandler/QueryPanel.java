@@ -72,8 +72,8 @@ private String query;
             l.setHorizontalAlignment(JLabel.CENTER);
             l.setVerticalAlignment(JLabel.NORTH);
             top.add(l);
-            
         }
+        
         top.setLayout(new GridLayout(0,getColumnNums()));
         bottom.add(query_button);
         this.add(top);

@@ -40,6 +40,8 @@ private JButton register;
             }
         
         });
+        this.add(top);
+        this.add(bottom);
     }
     
 }
