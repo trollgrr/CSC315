@@ -101,7 +101,7 @@ Payment_ID INT(12) UNSIGNED NOT NULL,
 PRIMARY KEY (Created, Payment_ID));
 DROP TABLE IF EXISTS frequentFlierGroup;
 CREATE TABLE frequentFlierGroup(
-CustomerID INT(12) UNSIGNED NOT NULL,
+Customer_ID INT(12) UNSIGNED NOT NULL,
 FFGroupID INT(12) UNSIGNED NOT NULL,
 MembershipName VARCHAR(50) NOT NULL,
 PRIMARY KEY (FFGroupID));
@@ -123,7 +123,6 @@ ALTER TABLE flight ADD FOREIGN KEY (Destination_IATA) REFERENCES airport (IATA);
 ALTER TABLE flight ADD FOREIGN KEY (_Tail) REFERENCES aircraft (Tail);
 ALTER TABLE flight ADD FOREIGN KEY (Carrier_ID) REFERENCES carrier (CarrierID);
 ALTER TABLE charge ADD FOREIGN KEY (Payment_ID) REFERENCES paymentType (PaymentID);
-ALTER TABLE reservation ADD FOREIGN KEY (Flight_No) REFERENCES flight (FlightNo);
-ALTER TABLE reservation ADD FOREIGN KEY (Carrier_ID) REFERENCES carrier (CarrierID);
-ALTER TABLE reservation ADD FOREIGN KEY (Departure_Date) REFERENCES flight (DepartureDate);
+ALTER TABLE reservation ADD FOREIGN KEY (Carrier_ID, Flight_No, Departure_Date) REFERENCES flight (Carrier_ID, FlightNo, DepartureDate);
+ALTER TABLE frequentFlierGroup ADD FOREIGN KEY (Customer_ID) REFERENCES customer (CustomerID);
 
