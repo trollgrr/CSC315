@@ -18,16 +18,16 @@ public class FlightHandler {
         System.out.println("Initializing database...");
         DatabaseStarter dbase = new DatabaseStarter();
         dbase.Initialize();
+        QueryManager query = new QueryManager();
         System.out.println("Database initialized, populating...");
         dbase.Populate();
         //returns arraylist of formatted strings with database query results
-        dbase.Query1(); 
-        dbase.Query2();
-        dbase.Query3();
+        query.Query1(); 
+        query.Query2();
+        query.Query3();
         VisualsManager manager = new VisualsManager();
         manager.initialize();
         
-        // TODO code application logic here
     }
     
 }
