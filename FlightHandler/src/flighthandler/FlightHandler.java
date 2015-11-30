@@ -23,6 +23,7 @@ public class FlightHandler {
         //returns arraylist of formatted strings with database query results
         dbase.Query1(); 
         dbase.Query2();
+        dbase.Query3();
         VisualsManager manager = new VisualsManager();
         manager.initialize();
         
