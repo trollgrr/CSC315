@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -22,6 +23,7 @@ import javax.swing.JPanel;
  */
 public class QueryPanel extends JPanel{
 private ArrayList<JLabel> column_headers;
+private JScrollPane scroll_pane;
 private JPanel top, bottom;
 private JButton query_button;
 private String query;
@@ -29,8 +31,12 @@ private String query;
         
         this.setSize(new Dimension(800,600));
         
+        scroll_pane = new JScrollPane();
         top = new JPanel();
-        top.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()-100));
+        top.setPreferredSize(new Dimension(this.getWidth(), 50));
+        scroll_pane.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()-200));
+        
+        
         
         bottom = new JPanel();
         bottom.setPreferredSize(new Dimension(this.getWidth(), 100));
@@ -59,6 +65,7 @@ private String query;
         column_headers.add(new JLabel(column_name));
     }
     
+    //use this method in client class to set query to be run
     public void setQuery(String query){
         this.query = query;
     }
@@ -77,6 +84,7 @@ private String query;
         top.setLayout(new GridLayout(0,getColumnNums()));
         bottom.add(query_button);
         this.add(top);
+        this.add(scroll_pane);
         this.add(bottom);
         
     }
