@@ -160,7 +160,7 @@ public class DatabaseStarter {
         return queryList2;
     }
 
-    public ArrayList<String> Query3() {
+    public ArrayList<String> Query3() {//Still not working///////////
         String query3 = "I'm sorry, but the table appears to be empty.";
         ArrayList<String> queryList3 = new ArrayList<>();
         try {
@@ -195,4 +195,7 @@ public class DatabaseStarter {
         }
         return queryList3;
     }
+    
+
+    
 }
