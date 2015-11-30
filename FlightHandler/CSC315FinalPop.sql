@@ -35,9 +35,23 @@ INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '211500', '20061231', '231500', 'N
 INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '081500', '20061231', '101500', 'N719PA', 'DL', '9875', '400', '450', '3600');
 INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '121500', '20061231', '141500', 'N807PA', 'WN', '8795', '300', '500', '3400');
 INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '131500', '20061231', '151500', 'N736PA', 'EA', '1250', '600', '800', '1600');
+INSERT INTO flight VALUES ('0', 'TRF', 'AYT', '131500', '20140113', '141500', 'N865PA', 'DH', '4500', '100', '200', '1300');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '111500', '20041231', '131500', 'N499PA', 'DL', '2300', '200', '400', '2300');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '061500', '20041231', '081500', 'N998PA', 'EA', '9345', '900', '1800', '3100');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '211500', '20041231', '231500', 'N499PA', 'DH', '9435', '200', '400', '3400');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '081500', '20041231', '101500', 'N719PA', 'DL', '9875', '400', '450', '3600');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '121500', '20041231', '141500', 'N807PA', 'WN', '8795', '300', '500', '3400');
+INSERT INTO flight VALUES ('0', 'DFW', 'LAX', '131500', '20041231', '151500', 'N736PA', 'EA', '1250', '600', '800', '1600');
 INSERT INTO reservation VALUES (NULL, '1', '0', '4500', 'DH', '20150113');
 INSERT INTO reservation VALUES (NULL, '2', '0', '2300', 'DL', '20061231');
 INSERT INTO reservation VALUES (NULL, '3', '0', '2300', 'DL', '20061231');
 INSERT INTO reservation VALUES (NULL, '4', '0', '9345', 'EA', '20061231');
 INSERT INTO reservation VALUES (NULL, '5', '0', '9435', 'DH', '20061231');
 INSERT INTO reservation VALUES (NULL, '6', '0', '9875', 'DL', '20061231');
+INSERT INTO reservation VALUES (NULL, '1', '0', '4500', 'DH', '20140113');
+INSERT INTO reservation VALUES (NULL, '2', '0', '2300', 'DL', '20041231');
+INSERT INTO reservation VALUES (NULL, '3', '0', '2300', 'DL', '20041231');
+INSERT INTO reservation VALUES (NULL, '4', '0', '9345', 'EA', '20041231');
+INSERT INTO reservation VALUES (NULL, '5', '0', '9435', 'DH', '20041231');
+INSERT INTO reservation VALUES (NULL, '6', '0', '9875', 'DL', '20041231');
+

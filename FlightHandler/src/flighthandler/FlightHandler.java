@@ -20,7 +20,9 @@ public class FlightHandler {
         dbase.Initialize();
         System.out.println("Database initialized, populating...");
         dbase.Populate();
-        dbase.Query1(); //returns arraylist of strings with database query results
+        //returns arraylist of formatted strings with database query results
+        dbase.Query1(); 
+        dbase.Query2();
         VisualsManager manager = new VisualsManager();
         manager.initialize();
         
