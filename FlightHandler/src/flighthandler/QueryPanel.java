@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,17 +31,23 @@ private String query;
     public QueryPanel(){
         
         this.setSize(new Dimension(800,600));
+        this.setPreferredSize(new Dimension(800,600));
+        BoxLayout bl = new BoxLayout(this, BoxLayout.Y_AXIS);
+        
+        this.setLayout(bl);
         
         scroll_pane = new JScrollPane();
         top = new JPanel();
         top.setPreferredSize(new Dimension(this.getWidth(), 50));
+        top.setMaximumSize(new Dimension(this.getWidth(), 50));
         scroll_pane.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()-200));
         
         
         
         bottom = new JPanel();
         bottom.setPreferredSize(new Dimension(this.getWidth(), 100));
-        bottom.setBackground(Color.yellow);
+        //bottom.setBackground(Color.yellow);
+        bottom.setMaximumSize(new Dimension(this.getWidth(), 50));
         
         column_headers = new ArrayList();
         query_button = new JButton("RUN QUERY");
