@@ -102,17 +102,18 @@ public class QueryManager {
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate("USE FlightHandler;");
-                ResultSet rs = stmt.executeQuery("SELECT Carrier_ID, FlightNo, DepartureTimeLocal, ArrivalTimeLocal FROM flight WHERE Departure_IATA='DFW' AND Destination_IATA='LAX' AND DepartureDate='2006-12-31';");
+                ResultSet rs = stmt.executeQuery("select CarrierName, t.count, t.Departure_IATA, t.DepartureDate  from carrier natural join (select flight.Carrier_ID as id, flight.DepartureDate, flight.Departure_IATA, count(flight.Carrier_ID) as count from flight where(Departure_IATA='DFW' and DepartureDate='2006-12-31')) as t where t.id=CarrierID ;");
                 while (rs.next()) {
-                    String Carrier_ID = rs.getString("Carrier_ID");
-                    String FlightNo = rs.getString("FlightNo");
-                    String DepartureTimeLocal = rs.getString("DepartureTimeLocal");
-                    String ArrivalTimeLocal = rs.getString("ArrivalTimeLocal");
-                    query3 = ("Flight Number: " + Carrier_ID + FlightNo
-                            + "\nDeparture Time: " + DepartureTimeLocal
-                            + "\nArrival Time: " + ArrivalTimeLocal);
-                    System.out.println(query3);
-                    queryList3.add(query3);
+                    String CarrierName = rs.getString("CarrierName");
+                    String FlightCount = rs.getString("count");
+                    String DepartureAirport = rs.getString("Departure_IATA");
+                    String DepartureDate = rs.getString("DepartureDate");
+                    
+                    queryList3.add(CarrierName);
+                    queryList3.add(FlightCount);
+                    queryList3.add(DepartureAirport);
+                    queryList3.add(DepartureDate);
+                    
                 }
             } catch (Exception ex) {
                 System.out.println("yikes");
