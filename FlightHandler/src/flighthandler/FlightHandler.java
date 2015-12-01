@@ -17,10 +17,10 @@ public class FlightHandler {
     public static void main(String[] args) {
         System.out.println("Initializing database...");
         DatabaseStarter dbase = new DatabaseStarter();
-        dbase.Initialize();
+        dbase.initialize();
         QueryManager query = new QueryManager();
         System.out.println("Database initialized, populating...");
-        dbase.Populate();
+        dbase.populate();
         //returns arraylist of formatted strings with database query results
         query.Query1(); 
         query.Query2();

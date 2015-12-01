@@ -27,7 +27,7 @@ private JButton submit;
 public final static String 
         FIRST = "First Name",
         LAST = "Last Name",
-        PHONE = "phone number",
+        PHONE = "Phone Number",
         ADDRESS = "Street address",
         ZIP = "Zip",
         APT = "apt no.",

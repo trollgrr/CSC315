@@ -32,7 +32,7 @@ public class DatabaseStarter {
     String line;
     int count;
 
-    public void Initialize() {
+    public void initialize() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
@@ -58,7 +58,7 @@ public class DatabaseStarter {
         }
     }
 
-    public void Populate() {
+    public void populate() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");

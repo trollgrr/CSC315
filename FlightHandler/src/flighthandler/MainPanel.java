@@ -18,19 +18,23 @@ import javax.swing.JPanel;
  */
 public class MainPanel extends JPanel{
 private JPanel top, bottom;
-private JButton register;
+private JButton register, initialize;
+DatabaseStarter starter;
     public MainPanel(){
         register = new JButton("REGISTER FLIGHT");
+        initialize = new JButton("RE-INITIALIZE DATABASE");
         
         top = new JPanel();
         bottom = new JPanel();
-        
+        starter = new DatabaseStarter();
         this.setSize(new Dimension(800, 600));
+        this.setPreferredSize(new Dimension(800, 600));
         
         top.setSize(new Dimension(this.getWidth(),this.getHeight()-100));
         bottom.setSize(new Dimension(this.getWidth(), 100));
         
         bottom.add(register);
+        bottom.add(initialize);
         
         register.addActionListener(new ActionListener(){
 
@@ -39,6 +43,17 @@ private JButton register;
                 FlightRegistrationForm form = new FlightRegistrationForm();
             }
         
+        });
+        
+        initialize.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                starter.initialize();
+                starter.populate();
+            }
+            
+            
         });
         this.add(top);
         this.add(bottom);

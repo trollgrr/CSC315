@@ -17,10 +17,12 @@ import javax.swing.JTabbedPane;
 public class VisualsManager {
 JFrame main_frame;
 JTabbedPane tabbed_pane;
+
     public VisualsManager(){
         main_frame = new JFrame("CSC315 Project");
         tabbed_pane = new JTabbedPane();
         tabbed_pane.setPreferredSize(new Dimension(800,600));
+        
     }
     
     public void initialize(){
