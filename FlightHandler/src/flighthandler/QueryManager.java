@@ -27,7 +27,6 @@ public class QueryManager {
     
     
       public ArrayList<String> Query1() {
-        String query1 = "I'm sorry, but the table appears to be empty.";
         ArrayList<String> queryList1 = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -57,7 +56,6 @@ public class QueryManager {
 
       
     public ArrayList<String> Query2() {
-        String query2 = "I'm sorry, but the table appears to be empty.";
         ArrayList<String> queryList2 = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -70,7 +68,6 @@ public class QueryManager {
                 stmt.executeUpdate("USE FlightHandler;");
                 ResultSet rs = stmt.executeQuery("SELECT Carrier_ID, FlightNo, DepartureTimeLocal, ArrivalTimeLocal, Departure_IATA, Destination_IATA, DepartureDate FROM flight WHERE Departure_IATA='DFW' AND Destination_IATA='LAX' AND DepartureDate='2006-12-31';");
                 while (rs.next()) {
-                    System.out.println(query2);
                     queryList2.add(rs.getString("Carrier_ID")+rs.getString("FlightNo"));
                     queryList2.add(rs.getString("DepartureTimeLocal"));
                     queryList2.add(rs.getString("ArrivalTimeLocal"));
@@ -92,7 +89,6 @@ public class QueryManager {
     }
 
     public ArrayList<String> Query3() {
-        String query3 = "I'm sorry, but the table appears to be empty.";
         ArrayList<String> queryList3 = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -104,15 +100,11 @@ public class QueryManager {
                 stmt.executeUpdate("USE FlightHandler;");
                 ResultSet rs = stmt.executeQuery("select CarrierName, t.count, t.Departure_IATA, t.DepartureDate  from carrier natural join (select flight.Carrier_ID as id, flight.DepartureDate, flight.Departure_IATA, count(flight.Carrier_ID) as count from flight where(Departure_IATA='DFW' and DepartureDate='2006-12-31')) as t where t.id=CarrierID ;");
                 while (rs.next()) {
-                    String CarrierName = rs.getString("CarrierName");
-                    String FlightCount = rs.getString("count");
-                    String DepartureAirport = rs.getString("Departure_IATA");
-                    String DepartureDate = rs.getString("DepartureDate");
                     
-                    queryList3.add(CarrierName);
-                    queryList3.add(FlightCount);
-                    queryList3.add(DepartureAirport);
-                    queryList3.add(DepartureDate);
+                    queryList3.add(rs.getString("CarrierName"));
+                    queryList3.add(rs.getString("count"));
+                    queryList3.add(rs.getString("Departure_IATA"));
+                    queryList3.add(rs.getString("DepartureDate"));
                     
                 }
             } catch (Exception ex) {
@@ -165,5 +157,4 @@ public class QueryManager {
         return queryList4;
     }
 
-    
 }
