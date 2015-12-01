@@ -10,10 +10,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +32,25 @@ public class DatabaseStarter {
     int count;
 
     public void initialize() {
+        Scanner stdIn = new Scanner(System.in);
+        System.out.println("Are you ready to initialize the database?");
+        System.out.println("NOTE: This will wipe the database and fill it with sample data.");
+        System.out.println("Type 'yes' to continue...");
+        if (stdIn.hasNext("yes")){
+            stdIn.nextLine();
         try {
+            System.out.println("Would you like to input a file or use default intializer?");
+            System.out.println("Type 'yes' to use your own file.");
+            try {
+                if (stdIn.hasNext("yes")) {
+                    System.out.println("Please input file name and path eg: /Documents/CSC315Final.sql");
+                    stdIn.nextLine();
+                    initName = stdIn.nextLine();
+                }
+            } catch (Exception e) {
+                System.out.println("Well, if you're not sure, then let's just go with the default.");
+                System.out.println("Error" + e);
+            }
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
             st = con.createStatement();
@@ -55,6 +72,7 @@ public class DatabaseStarter {
         } catch (ClassNotFoundException | SQLException e) {
             Logger logger = Logger.getAnonymousLogger();
             logger.log(Level.SEVERE, "an exception was thrown", e);
+        }
         }
     }
 
@@ -87,6 +105,4 @@ public class DatabaseStarter {
         }
     }
 
-  
-    
 }
