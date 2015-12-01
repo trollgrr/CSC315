@@ -54,6 +54,7 @@ JTabbedPane tabbed_pane;
         panel_4.addColumn("Airport Name");
         panel_4.addColumn("No. of Flights");
         panel_4.addColumn("Average Cost (Economy)");
+        panel_4.setQuery(QueryPanel.FOUR);
         panel_4.initialize();
         QueryPanel panel_5 = new QueryPanel();
         panel_5.addColumn("Flight Number");
