@@ -98,7 +98,7 @@ public class QueryManager {
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate("USE FlightHandler;");
-                ResultSet rs = stmt.executeQuery("select CarrierName, t.count, t.Departure_IATA, t.DepartureDate  from carrier natural join (select flight.Carrier_ID as id, flight.DepartureDate, flight.Departure_IATA, count(flight.Carrier_ID) as count from flight where(Departure_IATA='DFW' and DepartureDate='2006-12-31')) as t where t.id=CarrierID ;");
+                ResultSet rs = stmt.executeQuery("select CarrierName, t.count, t.Departure_IATA, t.DepartureDate  from carrier natural join (select distinct flight.Carrier_ID as id, flight.DepartureDate, flight.Departure_IATA, count(flight.Carrier_ID) as count from flight where Departure_IATA='DFW' and DepartureDate='2006-12-31' group by Departure_IATA, DepartureDate) as t where t.id=CarrierID ;");
                 while (rs.next()) {
                     
                     queryList3.add(rs.getString("CarrierName"));

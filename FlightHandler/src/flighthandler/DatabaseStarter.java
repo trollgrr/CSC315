@@ -26,12 +26,44 @@ public class DatabaseStarter {
 
     private Connection con;
     private Statement st;
-    String initName = (System.getProperty("user.dir") + "/CSC315Final.sql");
+    String initName;
     String insertName = (System.getProperty("user.dir") + "/CSC315FinalPop.sql");
     String line;
     int count;
+    
+    public void reset(){
+        initName = (System.getProperty("user.dir") + "/CSC315Final.sql");
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DatabaseStarter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseStarter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Statement stmt = null;
+        try {
+                stmt = con.createStatement();
+                FileReader fileReader = new FileReader(initName);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                while ((line = bufferedReader.readLine()).isEmpty() == false) {
+                    stmt.executeUpdate(line);
+                }
 
+                bufferedReader.close();
+            } catch (FileNotFoundException ex) {
+                System.out.println("Unable to open file '" + initName + "'");
+        } catch (IOException ex) {
+            Logger.getLogger(DatabaseStarter.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseStarter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void initialize() {
+        initName = (System.getProperty("user.dir") + "/CSC315Final.sql");
         Scanner stdIn = new Scanner(System.in);
         System.out.println("Are you ready to initialize the database?");
         System.out.println("NOTE: This will wipe the database and fill it with sample data.");
