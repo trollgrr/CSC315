@@ -121,7 +121,7 @@ public class QueryManager {
     }
     
     public ArrayList<String> Query4() {//Still not working///////////
-        String query3 = "I'm sorry, but the table appears to be empty.";
+        String query4 = "I'm sorry, but the table appears to be empty.";
         ArrayList<String> queryList4 = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");

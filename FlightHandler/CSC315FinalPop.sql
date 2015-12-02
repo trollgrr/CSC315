@@ -20,7 +20,17 @@ INSERT INTO customer VALUES (NULL, 'Ann', 'Risley', '867-5309', '08675 5309 0867
 INSERT INTO customer VALUES (NULL, 'Charles', 'Rocket', '867-5309', '5309 08675 5309 08675','4', '4', 'NOPRF', 'VEGGI', 'BCK');
 INSERT INTO customer VALUES (NULL, 'Yvonne', 'Hudson', '867-5309', '08675 5309 08675 5309','1', '2', 'NOPRF', 'VEGGI', 'BCK');
 INSERT INTO customer VALUES (NULL, 'Eddie', 'Murphy', '867-5309', '5309 08675 5309 08675','2', '3', 'NOPRF', 'VEGGI', 'FRT');
-INSERT INTO customer VALUES (NULL, 'Joe', 'Piscopo', '867-5309', '08675 5309 08675 5309','3', '4', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Bill', 'Jones', '867-5109', '08675 5309 08675 5309','4', '1', 'NOPRF', 'NOPRF', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Ted', 'Pupp', '867-5309', '8875 5309 08675 5309','2', '3', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Fisty', 'Cuffs', '867-5309', '4575 5309 08675 5309','3', '1', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Jose', 'Alvarez', '867-5309', '2675 5309 08675 5309','3', '2', 'NOPRF', 'VEGGI', 'BCK');
+INSERT INTO customer VALUES (NULL, 'Johnny', 'Bravo', '867-5309', '3675 5309 08675 5309','2', '3', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Chad', 'Stanfield', '867-5309', '9675 5309 08675 5309','3', '4', 'NOPRF', 'FRIED', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Austin', 'Bloomberg', '867-5309', '1675 5309 08675 5309','1', '2', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Timothy', 'Stevens', '867-5309', '6445 5309 08675 5309','1', '2', 'NOPRF', 'NOPRF', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Alfred', 'Jones', '867-5309', '4445 5309 08675 5309','3', '4', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Bill', 'Smith', '867-5309', '7875 5309 08675 5309','3', '2', 'NOPRF', 'VEGGI', 'FRT');
+INSERT INTO customer VALUES (NULL, 'Jennifer', 'Sanchez', '867-5309', '7775 5309 08675 5309','3', '1', 'NOPRF', 'VEGGI', 'FRT');
 INSERT INTO aircraft VALUES ('N865PA', 'Boeing', '747', '100', '100', '210');
 INSERT INTO aircraft VALUES ('N499PA', 'Boeing', '747', '100', '100', '210');
 INSERT INTO aircraft VALUES ('N342PA', 'Boeing', '747', '100', '100', '210');
@@ -52,6 +62,18 @@ INSERT INTO reservation VALUES (NULL, '1', '0', '4500', 'DH', '20140113', '0','1
 INSERT INTO reservation VALUES (NULL, '2', '0', '2300', 'DL', '20041231', '0','0','1');
 INSERT INTO reservation VALUES (NULL, '3', '0', '2300', 'DL', '20041231', '0','1','0');
 INSERT INTO reservation VALUES (NULL, '4', '0', '9345', 'EA', '20041231', '1','0','0');
-INSERT INTO reservation VALUES (NULL, '5', '0', '9435', 'DH', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '5', '0', '9435', 'DH', '20041231', '0','1','0');
 INSERT INTO reservation VALUES (NULL, '6', '0', '9875', 'DL', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '7', '0', '9875', 'DL', '20041231', '0','0','1');
+INSERT INTO reservation VALUES (NULL, '8', '0', '9875', 'DL', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '9', '0', '9875', 'DL', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '10', '0', '9875', 'DL', '20061231', '0','0','1');
+INSERT INTO reservation VALUES (NULL, '11', '0', '9875', 'DL', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '12', '0', '9875', 'DL', '20061231', '0','1','0');
+INSERT INTO reservation VALUES (NULL, '13', '0', '9875', 'DL', '20041231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '14', '0', '9875', 'DL', '20061231', '0','1','0');
+INSERT INTO reservation VALUES (NULL, '15', '0', '9875', 'DL', '20061231', '1','0','0');
+INSERT INTO reservation VALUES (NULL, '16', '0', '9875', 'DL', '20061231', '0','0','1');
+INSERT INTO reservation VALUES (NULL, '17', '0', '9875', 'DL', '20061231', '0','0','1');
+INSERT INTO reservation VALUES (NULL, '18', '0', '9875', 'DL', '20041231', '0','0','1');
 
