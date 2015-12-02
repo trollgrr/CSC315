@@ -172,7 +172,7 @@ private static final int ROW_HEIGHT = 30, MAX_ROWS = 20;
             rows.get(i).setMaximumSize(new Dimension(this.getWidth(), 25));
             rows.get(i).setLayout(new GridLayout(1,getColumnNums()));
             for(int j = 0; j < this.getColumnNums(); j++){
-                field = new JLabel("Butts");
+                field = new JLabel("");
                 field.setHorizontalAlignment(JLabel.CENTER);
                 field.setVerticalAlignment(JLabel.NORTH);
                 rows.get(i).add(field);

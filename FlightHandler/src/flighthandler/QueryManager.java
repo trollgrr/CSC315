@@ -165,12 +165,28 @@ public class QueryManager {
             try {
                 stmt = con.createStatement();
                 stmt.executeUpdate("USE FlightHandler;");
-                ResultSet rs = stmt.executeQuery("SELECT flight.Carrier_ID, flight.FlightNo, flight.Departure_IATA, flight.Destination_IATA, flight.CostThirdClass FROM flight WHERE Departure_IATA='DFW' AND Destination_IATA='LAX' AND CostThirdClass<'500';");
+                ResultSet rs = stmt.executeQuery("select * from\n" +
+                                                "	(select t.Carrier_ID, t.FlightNo, t.Departure_IATA, t.Destination_IATA, t.DepartureDate, t.CostThirdClass, (aircraft.classCapFirst+aircraft.classCapSecond+aircraft.classCapThird-t.Count) as AvailableSeats \n" +
+                                                "	from aircraft natural join \n" +
+                                                "		(select distinct count(*) as Count, flight.Departure_IATA, flight._Tail, flight.Destination_IATA, flight.DepartureDate, flight.Carrier_ID, flight.FlightNo, flight.CostThirdClass\n" +
+                                                "		from reservation natural join flight 	\n" +
+                                                "		where  flight.FlightNo=reservation.Flight_No \n" +
+                                                "		and flight.Carrier_ID=reservation.Carrier_ID \n" +
+                                                "		\n" +
+                                                "		and flight.Departure_IATA='DFW' \n" +
+                                                "		and flight.Destination_IATA='LAX' \n" +
+                                                "        and flight.CostThirdClass<'500'\n" +
+                                                "		group by FlightNo, Carrier_ID,DepartureDate) as t \n" +
+                                                "	where t._Tail=Tail\n" +
+                                                "	) as other_t\n" +
+                                                "where other_t.AvailableSeats>0;");
                 while (rs.next()) {
                     queryList5.add(rs.getString("Carrier_ID")+rs.getString("FlightNo"));
                     queryList5.add(rs.getString("Departure_IATA"));
                     queryList5.add(rs.getString("Destination_IATA"));
+                    queryList5.add(rs.getString("DepartureDate"));
                     queryList5.add(rs.getString("CostThirdClass"));
+                    queryList5.add(rs.getString("AvailableSeats"));
                 }
             } catch (Exception ex) {
                 System.out.println("yikes");
@@ -226,6 +242,114 @@ public class QueryManager {
             System.out.println("double yikes");
         }
         return queryList6;
+    }
+    public ArrayList<String> numOfCustomers() {
+        ArrayList<String> queryList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+            st = con.createStatement();
+            Statement stmt = null;
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate("USE FlightHandler;");
+                ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as Count FROM customer;");
+                while (rs.next()) {
+                    queryList.add(rs.getString("Count"));
+                    
+                }
+            } catch (Exception ex) {
+                System.out.println("yikes");
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, "an exception was thrown", ex);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "an exception was thrown", e);
+            System.out.println("double yikes");
+        }
+        return queryList;
+    }
+    public ArrayList<String> numOfFlights() {
+        ArrayList<String> queryList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+            st = con.createStatement();
+            Statement stmt = null;
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate("USE FlightHandler;");
+                ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as Count FROM flight;");
+                while (rs.next()) {
+                    queryList.add(rs.getString("Count"));
+                    
+                }
+            } catch (Exception ex) {
+                System.out.println("yikes");
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, "an exception was thrown", ex);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "an exception was thrown", e);
+            System.out.println("double yikes");
+        }
+        return queryList;
+    }
+    public ArrayList<String> numOfReservations() {
+        ArrayList<String> queryList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+            st = con.createStatement();
+            Statement stmt = null;
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate("USE FlightHandler;");
+                ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as Count FROM reservation;");
+                while (rs.next()) {
+                    queryList.add(rs.getString("Count"));
+                    
+                }
+            } catch (Exception ex) {
+                System.out.println("yikes");
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, "an exception was thrown", ex);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "an exception was thrown", e);
+            System.out.println("double yikes");
+        }
+        return queryList;
+    }
+    public ArrayList<String> numOfAircraft() {
+        ArrayList<String> queryList = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+            st = con.createStatement();
+            Statement stmt = null;
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate("USE FlightHandler;");
+                ResultSet rs = stmt.executeQuery("SELECT COUNT(*) as Count FROM aircraft;");
+                while (rs.next()) {
+                    queryList.add(rs.getString("Count"));
+                    
+                }
+            } catch (Exception ex) {
+                System.out.println("yikes");
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, "an exception was thrown", ex);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "an exception was thrown", e);
+            System.out.println("double yikes");
+        }
+        return queryList;
     }
 
 }
