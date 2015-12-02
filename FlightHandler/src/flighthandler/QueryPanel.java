@@ -139,6 +139,8 @@ private static final int ROW_HEIGHT = 30, MAX_ROWS = 20;
                 return qm.Query4();
             case FIVE:
                 return qm.Query5();
+            case SIX:
+                return qm.Query6();
             default:
                 return new ArrayList<>();
         }

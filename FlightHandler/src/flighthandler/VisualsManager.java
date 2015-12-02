@@ -68,7 +68,9 @@ JTabbedPane tabbed_pane;
         panel_6.addColumn("Flight Number");
         panel_6.addColumn("Departure Airport");
         panel_6.addColumn("Arrival Airport");
+        panel_6.addColumn("Departure Date");
         panel_6.addColumn("Available Seats");
+        panel_6.setQuery(QueryPanel.SIX);
         panel_6.initialize();
         
         
