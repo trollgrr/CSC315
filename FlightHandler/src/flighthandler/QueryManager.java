@@ -120,8 +120,7 @@ public class QueryManager {
         return queryList3;
     }
     
-    public ArrayList<String> Query4() {//Still not working///////////
-        String query3 = "I'm sorry, but the table appears to be empty.";
+    public ArrayList<String> Query4() {
         ArrayList<String> queryList4 = new ArrayList<>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -133,15 +132,11 @@ public class QueryManager {
                 stmt.executeUpdate("USE FlightHandler;");
                 ResultSet rs = stmt.executeQuery("select CarrierName, t.Departure_IATA, t.Count, t.Average from carrier natural join (select distinct Departure_IATA, Carrier_ID, count(Carrier_ID) as Count, avg(CostThirdClass) as Average from flight group by Carrier_ID, Departure_IATA) as t where carrier.CarrierID=t.Carrier_ID;");
                 while (rs.next()) {
-                    String CarrierName = rs.getString("CarrierName");
-                    String DepartureAirport = rs.getString("Departure_IATA");
-                    String Count = rs.getString("Count");
-                    String Average = rs.getString("Average");
                     
-                    queryList4.add(CarrierName);
-                    queryList4.add(DepartureAirport);
-                    queryList4.add(Count);
-                    queryList4.add(Average);
+                    queryList4.add(rs.getString("CarrierName"));
+                    queryList4.add(rs.getString("Departure_IATA"));
+                    queryList4.add(rs.getString("Count"));
+                    queryList4.add(rs.getString("Average"));
                     
                 }
             } catch (Exception ex) {
@@ -155,6 +150,34 @@ public class QueryManager {
             System.out.println("double yikes");
         }
         return queryList4;
+    }
+    
+    public ArrayList<String> Query5() {
+        ArrayList<String> queryList5 = new ArrayList<>();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "AccessMeHere");
+            st = con.createStatement();
+            Statement stmt = null;
+            try {
+                stmt = con.createStatement();
+                stmt.executeUpdate("USE FlightHandler;");
+                ResultSet rs = stmt.executeQuery("SELECT flight.Carrier_ID, flight.FlightNo, flight.Departure_IATA, flight.Destination_IATA, flight.CostThirdClass FROM flight WHERE Departure_IATA='DFW' AND Destination_IATA=LAX AND CostThirdClass<'500';");
+                while (rs.next()) {
+                    queryList5.add(rs.getString("Carrier_ID"));
+                    queryList5.add(rs.getString("FlightNo"));
+                }
+            } catch (Exception ex) {
+                System.out.println("yikes");
+                Logger logger = Logger.getAnonymousLogger();
+                logger.log(Level.SEVERE, "an exception was thrown", ex);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            Logger logger = Logger.getAnonymousLogger();
+            logger.log(Level.SEVERE, "an exception was thrown", e);
+            System.out.println("double yikes");
+        }
+        return queryList5;
     }
 
 }
